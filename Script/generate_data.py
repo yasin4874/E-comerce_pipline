@@ -8,6 +8,7 @@ path = Path(__file__).parent.parent /"data/raw"
 
 path.mkdir(parents=True, exist_ok=True)
 
+
 customer_data = {'cust_id': [], 'name': [], 'email': [], 'country': []}
 product_data = {'product_id': [],
                 'product_name': [], 'category': [], 'price': []}
