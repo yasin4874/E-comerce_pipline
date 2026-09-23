@@ -8,6 +8,10 @@ path = Path(__file__).parent.parent /"data/raw"
 
 path.mkdir(parents=True, exist_ok=True)
 
+TOTAL_CUSTOMERS = 500
+TOTAL_PRODUCTS = 50
+TOTAL_ORDERS = 2000
+TOTAL_ORDER_ITEMS = 2000
 
 customer_data = {'cust_id': [], 'name': [], 'email': [], 'country': []}
 product_data = {'product_id': [],
@@ -21,14 +25,14 @@ class Generate_issue:
     def __init__(self):
         pass
 
-    def corrupt_id(self, t_ids):
+    def corrupt_id(self, total_ids):
         random_corrupt = random.randint(1, 2)
 
         if random_corrupt == 1:
             return np.nan  # return the id empty
         else:
             # return id equal a random id (to get duplicate id)
-            return random.randint(1, t_ids)
+            return random.randint(1, total_ids)
 
     def corrupt_name(self, name):
         random_corrupt = random.randint(1, 2)
@@ -58,7 +62,7 @@ class Generate_issue:
 
         column_to_corrupt = random.choice(data)
         if (column_to_corrupt == 'id'):
-            self.id = self.corrupt_id(500)
+            self.id = self.corrupt_id(TOTAL_CUSTOMERS)
 
         elif (column_to_corrupt == 'name'):
             self.name = self.corrupt_name(full_name)
@@ -73,7 +77,7 @@ class Generate_issue:
                 email = email.replace("@", "")
             else:
                 # Remove the ".com" from the email
-                email = email.replace("gmail", "")
+                email = email.replace(".com", "")
         elif (column_to_corrupt == 'country'):
             random_corrupt = random.randint(1, 2)
 
@@ -99,7 +103,7 @@ class Generate_issue:
         column_to_corrupt = random.choice(data)
 
         if (column_to_corrupt == 'id'):  # corrupt the id
-            id = self.corrupt_id(50)
+            self.id = self.corrupt_id(TOTAL_PRODUCTS)
 
         elif (column_to_corrupt == 'name'):  # corrupt the name
             name = self.corrupt_name(self.name)
@@ -125,10 +129,10 @@ class Generate_issue:
         column_to_corrupt = random.choice(data)
 
         if column_to_corrupt == 'id':
-            self.id = self.corrupt_id(2000)
+            self.id = self.corrupt_id(TOTAL_ORDERS)
 
         elif column_to_corrupt == 'custom_id':
-            self.custom_id = self.corrupt_id(500)
+            self.custom_id = self.corrupt_id(TOTAL_CUSTOMERS)
 
         elif column_to_corrupt == 'order_date':
             random_choice = random.randint(1, 3)
@@ -163,13 +167,13 @@ class Generate_issue:
         column_to_corrupt = random.choice(data)
 
         if column_to_corrupt == 'id':
-            self.id = self.corrupt_id(2000)
+            self.id = self.corrupt_id(TOTAL_ORDER_ITEMS)
 
         elif column_to_corrupt == 'order_id':
-            self.order_id = self.corrupt_id(2000)
+            self.order_id = self.corrupt_id(TOTAL_ORDERS)
 
         elif column_to_corrupt == 'product_id':
-            self.product_id = self.corrupt_id(50)
+            self.product_id = self.corrupt_id(TOTAL_PRODUCTS)
 
         elif column_to_corrupt == 'quantity':
             self.quantity = self.corrupt_numbers(self.quantity, 200)
@@ -201,7 +205,7 @@ def customers():
     countries = ['somalia', 'US', 'UK', 'Canada', 'China', 'Kenya', 'Egypt',
                  'Libya', 'Yamen', 'Sweden', 'Algeria', 'Maroco', 'Jappan', 'Korea']
 
-    for id in range(1, 501):
+    for id in range(1, TOTAL_CUSTOMERS + 1):
         firstN = random.choice(fname)
         lastN = random.choice(lname)
         fullname = firstN + " " + lastN
@@ -244,7 +248,7 @@ def products():
     flat_list = [(category, product) for category,
                  products in categories.items() for product in products]
 
-    for id in range(1, 51):
+    for id in range(1, TOTAL_PRODUCTS + 1 ):
         category, product_name = random.choice(flat_list)
         # Remove the selected product to avoid duplicates
         flat_list.remove((category, product_name))
@@ -277,7 +281,7 @@ def orders(customers_id):
 
     statuses = ['Pending', 'Shipped', 'Delivered']
 
-    for i in range(1, 2001):
+    for i in range(1, TOTAL_ORDERS + 1):
         cust_id = random.choice(customers_id)
         # randomly select a status for the order
         status_ = random.choice(statuses)
@@ -313,7 +317,7 @@ def orders(customers_id):
 
 def order_items(products_id, orders_id, products):
 
-    for i in range(1, 2001):
+    for i in range(1, TOTAL_ORDER_ITEMS + 1):
 
         product_id = random.choice(products_id)
         order_id = random.choice(orders_id)
