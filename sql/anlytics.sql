@@ -1,0 +1,11 @@
+```*************      Anlytical questions      *************```
+-- 1. How many customers have placed at least one order?
+-- 2. What are the 10 most-ordered products?
+-- 3. Which country has the most customers?
+-- 4. What is the average number of orders per day??
+-- 5. What are the 10 products with the highest quantity sold, and which customers purchased them?
+-- 6. What is the total revenue for each month?
+-- 7. What is the total revenue for each product category?
+-- 8. Which products costing more than $500 have been ordered, and which customers ordered them?
+-- 9. What is the average number of orders per customer in each country?
+--10. Show the customer name, order ID, product name, quantity, and total price for each order item.
