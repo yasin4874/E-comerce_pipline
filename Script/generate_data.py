@@ -22,28 +22,28 @@ class Generate_issue:
         pass
 
     def corrupt_id(self, t_ids):
-        random_cor = random.randint(1, 2)
+        random_corrupt = random.randint(1, 2)
 
-        if random_cor == 1:
+        if random_corrupt == 1:
             return np.nan  # return the id empty
         else:
             # return id equal a random id (to get duplicate id)
             return random.randint(1, t_ids)
 
     def corrupt_name(self, name):
-        random_cor = random.randint(1, 2)
+        random_corrupt = random.randint(1, 2)
 
-        if random_cor == 1:
+        if random_corrupt == 1:
             return np.nan  # make the name empty
         else:
             return name + "           "  # add extra spaces
 
     def corrupt_numbers(self, number, amount):
-        random_cor = random.randint(1, 3)
+        random_corrupt = random.randint(1, 3)
 
-        if random_cor == 1:
+        if random_corrupt == 1:
             number = ""
-        elif random_cor == 2:
+        elif random_corrupt == 2:
             number = random.randint(0, amount) * -1
         else:
             number = str(number)
@@ -64,20 +64,20 @@ class Generate_issue:
             self.name = self.corrupt_name(full_name)
 
         elif (column_to_corrupt == 'email'):
-            random_cor = random.randint(1, 3)
+            random_corrupt = random.randint(1, 3)
 
-            if random_cor == 1:
+            if random_corrupt == 1:
                 email = np.nan  # Make the email empty
-            elif random_cor == 2:
+            elif random_corrupt == 2:
                 # Remove the "@" symbol from the email
                 email = email.replace("@", "")
             else:
                 # Remove the ".com" from the email
                 email = email.replace("gmail", "")
         elif (column_to_corrupt == 'country'):
-            random_cor = random.randint(1, 2)
+            random_corrupt = random.randint(1, 2)
 
-            if random_cor == 1:
+            if random_corrupt == 1:
                 country = np.nan  # Make the country empty
 
             else:
